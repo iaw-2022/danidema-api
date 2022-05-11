@@ -71,8 +71,14 @@ const deletePartido = async(req, res) =>{
     const id = req.params.id;
     if(!isNaN(id)){
         const response = await db.query('DELETE FROM partidos WHERE id_partido = $1', [id]);
-        res.status(200).json(response);
-        res.json('Partido eliminado correctamente');
+        if(response.rowCount > 0){
+            res.json({
+                message: 'Partido Eliminado Correctamente',
+            })
+        }
+        else{
+            res.status(404).json({error: 'not found'});
+        }
     }
     else{
         res.status(400).json({error: 'invalid parameter'});
