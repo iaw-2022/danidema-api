@@ -15,7 +15,7 @@ const { getEquipos, getEquiposById} = require('../controllers/equipos.controller
  *       '400':
  *         description: Parametro invalido.
  *       '404':
- *         description: No funciona.
+ *         description: No se encuentra.
 */
 router.get('/', getEquipos);
 /**
@@ -38,7 +38,7 @@ router.get('/', getEquipos);
  *       '400':
  *         description: Parametro invalido.
  *       '404':
- *         description: No funciona.
+ *         description: No se encuentra.
 */
 router.get('/:id', getEquiposById);
 

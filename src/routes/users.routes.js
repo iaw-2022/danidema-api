@@ -15,7 +15,7 @@ const { getUsers, getUsersById} = require('../controllers/users.controller.js');
  *       '400':
  *         description: Parametro invalido.
  *       '404':
- *         description: No funciona.
+ *         description: No se encuentra.
 */
 router.get('/', getUsers);
 /**
@@ -38,7 +38,7 @@ router.get('/', getUsers);
  *       '400':
  *         description: Parametro invalido.
  *       '404':
- *         description: No funciona.
+ *         description: No se encuentra.
 */
 router.get('/:id', getUsersById);
 //router.post('/users', createUsers);

@@ -14,6 +14,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 //routes
+app.get('/', (req, res) => {
+    res.json({
+        message: 'api',
+    })
+});
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use('/users', routesUsers);
 app.use('/partidos', routesPartidos);

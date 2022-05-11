@@ -15,7 +15,7 @@ const { getPartidos, getPartidosById,getPartidosByTeam, updateResultPartidos,cre
  *       '400':
  *         description: Parametro invalido.
  *       '404':
- *         description: No funciona.
+ *         description: No se encuentra.
 */
 router.get('/', getPartidos);
 /**
@@ -38,7 +38,7 @@ router.get('/', getPartidos);
  *       '400':
  *         description: Parametro invalido.
  *       '404':
- *         description: No funciona.
+ *         description: No se encuentra.
 */
 router.get('/:id', getPartidosById);
 /**
@@ -61,7 +61,7 @@ router.get('/:id', getPartidosById);
  *       '400':
  *         description: Parametro invalido.
  *       '404':
- *         description: No funciona. 
+ *         description: No se encuentra. 
 */
 router.get('/equipo/:id', getPartidosByTeam);
 /**
@@ -106,7 +106,7 @@ router.get('/equipo/:id', getPartidosByTeam);
  *       '400':
  *         description: Parametro invalido.
  *       '404':
- *         description: No funciona. 
+ *         description: No se encuentra. 
 */
 router.post('/', createPartido);
 /**
@@ -129,7 +129,7 @@ router.post('/', createPartido);
  *       '400':
  *         description: Parametro invalido.
  *       '404':
- *         description: No funciona.
+ *         description: No se encuentra.
 */
 router.delete('/:id', deletePartido);
 /**
@@ -168,7 +168,7 @@ router.delete('/:id', deletePartido);
  *       '400':
  *         description: Parametro invalido.
  *       '404':
- *         description: No funciona. 
+ *         description: No se encuentra.
 */
 router.put('/:id', updateResultPartidos);
 

@@ -27,7 +27,6 @@ const getPartidosById = async(req, res) =>{
 
 const getPartidosByTeam = async(req, res) =>{
     const id = req.params.id;
-    console.log(id);
     if(!isNaN(id)){
         const response = await db.query('SELECT * FROM partidos WHERE (id_equipo_local = $1) or (id_equipo_visitante = $1)', [id]);
         if(response.rows.length > 0){
@@ -55,17 +54,29 @@ const createPartido = async(req, res) =>{
 
 const updateResultPartidos = async(req, res) =>{
     const id = req.params.id
-    const { goles_local, goles_visita, informe} = req.body;
-    const response = await db.query('UPDATE partidos SET goles_local = $1, goles_visita = $2, informe_partido = $3 WHERE id_partido = $4', [goles_local, goles_visita, informe, id]);
-    res.status(200).json(response.rows);
-    res.json('Partido Updated Successfully');
+    if(!isNaN(id)){
+        const { goles_local, goles_visita, informe} = req.body;
+        const response = await db.query('UPDATE partidos SET goles_local = $1, goles_visita = $2, informe_partido = $3 WHERE id_partido = $4', [goles_local, goles_visita, informe, id]);
+        res.json({
+            message: 'Partido Actualizado Correctamente',
+        })
+    }
+    else{
+        res.status(400).json({error: 'invalid parameter'});
+    }
+
 };
 
 const deletePartido = async(req, res) =>{
     const id = req.params.id;
-    const response = await db.query('DELETE FROM partidos WHERE id_partido = $1', [id]);
-    console.log(response);
-    res.json('Partido eliminado correctamente');
+    if(!isNaN(id)){
+        const response = await db.query('DELETE FROM partidos WHERE id_partido = $1', [id]);
+        res.status(200).json(response);
+        res.json('Partido eliminado correctamente');
+    }
+    else{
+        res.status(400).json({error: 'invalid parameter'});
+    }
 };
 
 module.exports = {
