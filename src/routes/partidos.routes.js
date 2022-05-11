@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getPartidos, getPartidosById,getPartidosByTeam} = require('../controllers/partidos.controller.js');
+const { getPartidos, getPartidosById,getPartidosByTeam, updatePartidos} = require('../controllers/partidos.controller.js');
 /**
  * @swagger
  * /partidos:
@@ -66,6 +66,28 @@ router.get('/:id', getPartidosById);
 router.get('/equipo/:id', getPartidosByTeam);
 //router.post('/users', createUsers);
 //router.delete('/users/:id', deleteUsers);
-//router.put('/users/:id', updateUsers);
+/**
+ * @swagger
+ * /partidos/{id}:
+ *   put:
+ *     description: Use it to add goals to a partido.
+ *     tags: 
+ *       - Partidos
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID of the partido
+ *     responses:
+ *       '200':
+ *         description: Sucessful response
+ *       '400':
+ *         description: Invalid parameter
+ *       '404':
+ *         description: Not found 
+*/
+router.put('/:id', updatePartidos);
 
 module.exports = router;

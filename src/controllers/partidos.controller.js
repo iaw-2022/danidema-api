@@ -53,12 +53,12 @@ const createUsers = async(req, res) =>{
     })
 };
 
-const updateUsers = async(req, res) =>{
+const updatePartidos = async(req, res) =>{
     const id = req.params.id
-    const { name, email, password} = req.body
-    const response = await pool.query('UPDATE users SET name = $1, email = $2, password = $3 WHERE id = $4', [name, email, password, id]);
-    console.log(response);
-    res.json('User Updated Successfully');
+    const { goles_local, goles_visita} = req.body;
+    const response = await db.query('UPDATE partidos SET goles_local = $1, goles_visita = $2 WHERE id_partido = $3', [goles_local, goles_visita, id]);
+    res.status(200).json(response.rows);
+    res.json('Partido Updated Successfully');
 };
 
 const deleteUsers = async(req, res) =>{
@@ -71,5 +71,6 @@ const deleteUsers = async(req, res) =>{
 module.exports = {
     getPartidos,
     getPartidosById,
-    getPartidosByTeam
+    getPartidosByTeam,
+    updatePartidos
 }
