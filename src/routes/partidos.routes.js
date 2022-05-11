@@ -1,28 +1,28 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getPartidos, getPartidosById,getPartidosByTeam, updatePartidos} = require('../controllers/partidos.controller.js');
+const { getPartidos, getPartidosById,getPartidosByTeam, updateResultPartidos,createPartido,deletePartido} = require('../controllers/partidos.controller.js');
 /**
  * @swagger
  * /partidos:
  *   get:
- *     description: Use to request all partidos.
+ *     description: Obtener todos los partidos.
  *     tags: 
  *       - Partidos
  *     responses:
  *       '200':
- *         description: Sucessful response
+ *         description: Respuesta correcta.
  *       '400':
- *         description: Invalid parameter
+ *         description: Parametro invalido.
  *       '404':
- *         description: Not found 
+ *         description: No funciona.
 */
 router.get('/', getPartidos);
 /**
  * @swagger
  * /partidos/{id}:
  *   get:
- *     description: Use to request a partido.
+ *     description: Obtener partido por id.
  *     tags: 
  *       - Partidos
  *     parameters:
@@ -31,21 +31,21 @@ router.get('/', getPartidos);
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID of the partido
+ *         description: ID del partido
  *     responses:
  *       '200':
- *         description: Sucessful response
+ *         description: Respuesta correcta.
  *       '400':
- *         description: Invalid parameter
+ *         description: Parametro invalido.
  *       '404':
- *         description: Not found 
+ *         description: No funciona.
 */
 router.get('/:id', getPartidosById);
 /**
  * @swagger
  * /partidos/equipo/{id-equipo}:
  *   get:
- *     description: Use to request a partido for equipo.
+ *     description: Obtener partidos por equipo.
  *     tags: 
  *       - Partidos
  *     parameters:
@@ -54,23 +54,66 @@ router.get('/:id', getPartidosById);
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID of the equipo
+ *         description: ID del equipo.
  *     responses:
  *       '200':
- *         description: Sucessful response
+ *         description: Respuesta correcta.
  *       '400':
- *         description: Invalid parameter
+ *         description: Parametro invalido.
  *       '404':
- *         description: Not found 
+ *         description: No funciona. 
 */
 router.get('/equipo/:id', getPartidosByTeam);
-//router.post('/users', createUsers);
-//router.delete('/users/:id', deleteUsers);
+/**
+ * @swagger
+ * /partidos:
+ *   post:
+ *     description: Agregar un partido.
+ *     tags: 
+ *       - Partidos
+ *     parameters:
+ *       - in: body
+ *         name: partido
+ *         description: Carga de un partido nuevo.
+ *         schema:
+ *          type: object
+ *          required:
+ *              - hora: true
+ *              - fecha: true
+ *              - cancha: true
+ *              - instrancia: true
+ *              - id_local: true
+ *              - id_visita: true
+ *              - id_arbitro: true
+ *          properties:
+ *              hora:
+ *                  type: time
+ *              fecha:
+ *                  type: date
+ *              cancha:
+ *                  type: string
+ *              instancia:
+ *                  type: string
+ *              id_local:
+ *                  type: integer
+ *              id_visita:
+ *                  type: integer
+ *              id_arbitro:
+ *                  type: integer
+ *     responses:
+ *       '200':
+ *         description: Respuesta correcta.
+ *       '400':
+ *         description: Parametro invalido.
+ *       '404':
+ *         description: No funciona. 
+*/
+router.post('/', createPartido);
 /**
  * @swagger
  * /partidos/{id}:
- *   put:
- *     description: Use it to add goals to a partido.
+ *   delete:
+ *     description: Borrar partido por id.
  *     tags: 
  *       - Partidos
  *     parameters:
@@ -79,15 +122,54 @@ router.get('/equipo/:id', getPartidosByTeam);
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID of the partido
+ *         description: ID del partido
  *     responses:
  *       '200':
- *         description: Sucessful response
+ *         description: Respuesta correcta.
  *       '400':
- *         description: Invalid parameter
+ *         description: Parametro invalido.
  *       '404':
- *         description: Not found 
+ *         description: No funciona.
 */
-router.put('/:id', updatePartidos);
+router.delete('/:id', deletePartido);
+/**
+ * @swagger
+ * /partidos/{id}:
+ *   put:
+ *     description: Agregar resultado a un partido y el informe correspondiente.
+ *     tags: 
+ *       - Partidos
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID del partido
+ *       - in: body
+ *         name: resultado
+ *         description: Resultado del partido.
+ *         schema:
+ *          type: object
+ *          required:
+ *              - goles_local
+ *              - goles_visita
+ *              - informe
+ *          properties:
+ *              goles_local:
+ *                  type: integer
+ *              goles_visita:
+ *                  type: integer
+ *              informe:
+ *                  type: string
+ *     responses:
+ *       '200':
+ *         description: Respuesta correcta.
+ *       '400':
+ *         description: Parametro invalido.
+ *       '404':
+ *         description: No funciona. 
+*/
+router.put('/:id', updateResultPartidos);
 
 module.exports = router;

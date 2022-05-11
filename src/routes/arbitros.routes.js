@@ -6,23 +6,23 @@ const { getArbitros, getArbitrosById} = require('../controllers/arbitros.control
  * @swagger
  * /arbitros:
  *   get:
- *     description: Use to request all arbitros.
+ *     description: Obtener todos los arbitros.
  *     tags: 
  *       - Arbitros
  *     responses:
  *       '200':
- *         description: Sucessful response
+ *         description: Respuesta correcta.
  *       '400':
- *         description: Invalid parameter
+ *         description: Parametro invalido.
  *       '404':
- *         description: Not found
+ *         description: No funciona.
  */
 router.get('/', getArbitros);
 /**
  * @swagger
  * /arbitros/{id}:
  *   get:
- *     description: Use to request a arbitro.
+ *     description: Obtener arbitro por id.
  *     tags: 
  *       - Arbitros
  *     parameters:
@@ -31,18 +31,15 @@ router.get('/', getArbitros);
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID of the arbitro
+ *         description: ID del arbitro.
  *     responses:
  *       '200':
- *         description: Sucessful response
+ *         description: Respuesta correcta.
  *       '400':
- *         description: Invalid parameter
+ *         description: Parametro invalido.
  *       '404':
- *         description: Not found
+ *         description: No funciona.
  */
 router.get('/:id', getArbitrosById);
-//router.post('/users', createUsers);
-//router.delete('/users/:id', deleteUsers);
-//router.put('/users/:id', updateUsers);
 
 module.exports = router;

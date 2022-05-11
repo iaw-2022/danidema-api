@@ -41,36 +41,38 @@ const getPartidosByTeam = async(req, res) =>{
     }
 };
 
-const createUsers = async(req, res) =>{
-    const { name, email, password} = req.body;
-    const response = await pool.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3)', [name, email, password]);
+const createPartido = async(req, res) =>{
+    const { hora, fecha, cancha, instancia, id_local, id_visita,id_arbitro} = req.body;
+    const response = await db.query('INSERT INTO partidos (hora, fecha, cancha, instancia, id_equipo_local, id_equipo_visitante,id_arbitro_designado) VALUES ($1, $2, $3, $4, $5, $6, $7)', [hora, fecha, cancha, instancia, id_local, id_visita,id_arbitro]);
     console.log(response);
     res.json({
-        message: 'User Added Succesfully',
+        message: 'Partido Agregado Correctamente',
         body: {
-            user: {name, email, password}
+            partido: {hora, fecha, cancha, instancia, id_local, id_visita,id_arbitro}
         }
     })
 };
 
-const updatePartidos = async(req, res) =>{
+const updateResultPartidos = async(req, res) =>{
     const id = req.params.id
-    const { goles_local, goles_visita} = req.body;
-    const response = await db.query('UPDATE partidos SET goles_local = $1, goles_visita = $2 WHERE id_partido = $3', [goles_local, goles_visita, id]);
+    const { goles_local, goles_visita, informe} = req.body;
+    const response = await db.query('UPDATE partidos SET goles_local = $1, goles_visita = $2, informe_partido = $3 WHERE id_partido = $4', [goles_local, goles_visita, informe, id]);
     res.status(200).json(response.rows);
     res.json('Partido Updated Successfully');
 };
 
-const deleteUsers = async(req, res) =>{
+const deletePartido = async(req, res) =>{
     const id = req.params.id;
-    const response = await pool.query('DELETE FROM users WHERE id = $1', [id]);
+    const response = await db.query('DELETE FROM partidos WHERE id_partido = $1', [id]);
     console.log(response);
-    res.json('User deleted successfully');
+    res.json('Partido eliminado correctamente');
 };
 
 module.exports = {
     getPartidos,
     getPartidosById,
     getPartidosByTeam,
-    updatePartidos
+    updateResultPartidos,
+    createPartido,
+    deletePartido
 }

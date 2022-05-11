@@ -6,23 +6,23 @@ const { getEquipos, getEquiposById} = require('../controllers/equipos.controller
  * @swagger
  * /equipos:
  *   get:
- *     description: Use to request all equipos.
+ *     description: Obtener todos los equipos.
  *     tags: 
  *       - Equipos
  *     responses:
  *       '200':
- *         description: Sucessful response
+ *         description: Respuesta correcta.
  *       '400':
- *         description: Invalid parameter
+ *         description: Parametro invalido.
  *       '404':
- *         description: Not found 
+ *         description: No funciona.
 */
 router.get('/', getEquipos);
 /**
  * @swagger
  * /equipos/{id}:
  *   get:
- *     description: Use to request a equipo.
+ *     description: Obtener equipo por id.
  *     tags: 
  *       - Equipos
  *     parameters:
@@ -31,18 +31,15 @@ router.get('/', getEquipos);
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID of the equipo
+ *         description: ID del equipo.
  *     responses:
  *       '200':
- *         description: Sucessful response
+ *         description: Respuesta correcta.
  *       '400':
- *         description: Invalid parameter
+ *         description: Parametro invalido.
  *       '404':
- *         description: Not found 
+ *         description: No funciona.
 */
 router.get('/:id', getEquiposById);
-//router.post('/users', createUsers);
-//router.delete('/users/:id', deleteUsers);
-//router.put('/users/:id', updateUsers);
 
 module.exports = router;

@@ -6,23 +6,23 @@ const { getUsers, getUsersById} = require('../controllers/users.controller.js');
  * @swagger
  * /users:
  *   get:
- *     description: Use to request all users.
+ *     description: Obtener todos los usuarios.
  *     tags: 
  *       - Users
  *     responses:
  *       '200':
- *         description: Sucessful response
+ *         description: Respuesta correcta.
  *       '400':
- *         description: Invalid parameter
+ *         description: Parametro invalido.
  *       '404':
- *         description: Not found 
+ *         description: No funciona.
 */
 router.get('/', getUsers);
 /**
  * @swagger
  * /users/{id}:
  *   get:
- *     description: Use to request a user.
+ *     description: Obtener usuario por id.
  *     tags: 
  *       - Users
  *     parameters:
@@ -31,14 +31,14 @@ router.get('/', getUsers);
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID of the user
+ *         description: ID del usuario.
  *     responses:
  *       '200':
- *         description: Sucessful response
+ *         description: Respuesta correcta.
  *       '400':
- *         description: Invalid parameter
+ *         description: Parametro invalido.
  *       '404':
- *         description: Not found 
+ *         description: No funciona.
 */
 router.get('/:id', getUsersById);
 //router.post('/users', createUsers);
