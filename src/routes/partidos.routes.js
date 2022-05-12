@@ -102,11 +102,7 @@ router.get('/equipo/:id', getPartidosByTeam);
  *                  type: integer
  *     responses:
  *       '200':
- *         description: Respuesta correcta.
- *       '400':
- *         description: Parametro invalido.
- *       '404':
- *         description: No se encuentra. 
+ *         description: Respuesta correcta. 
 */
 router.post('/', createPartido);
 /**

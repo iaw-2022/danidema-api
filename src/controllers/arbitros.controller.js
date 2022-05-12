@@ -25,33 +25,6 @@ const getArbitrosById = async(req, res) =>{
     }
 };
 
-const createUsers = async(req, res) =>{
-    const { name, email, password} = req.body;
-    const response = await pool.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3)', [name, email, password]);
-    console.log(response);
-    res.json({
-        message: 'User Added Succesfully',
-        body: {
-            user: {name, email, password}
-        }
-    })
-};
-
-const updateUsers = async(req, res) =>{
-    const id = req.params.id
-    const { name, email, password} = req.body
-    const response = await pool.query('UPDATE users SET name = $1, email = $2, password = $3 WHERE id = $4', [name, email, password, id]);
-    console.log(response);
-    res.json('User Updated Successfully');
-};
-
-const deleteUsers = async(req, res) =>{
-    const id = req.params.id;
-    const response = await pool.query('DELETE FROM users WHERE id = $1', [id]);
-    console.log(response);
-    res.json('User deleted successfully');
-};
-
 module.exports = {
     getArbitros,
     getArbitrosById
