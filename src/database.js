@@ -6,7 +6,8 @@ const db_config = {
     user: config.DB_USER,
     password: config.DB_PASSWORD,
     database: config.DATABASE,
-    port: config.DB_PORT
+    port: config.DB_PORT,
+    ssl: { rejectUnauthorized: false }
 };
 
 const db = new Pool(db_config);
