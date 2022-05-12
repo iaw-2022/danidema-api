@@ -57,9 +57,14 @@ const updateResultPartidos = async(req, res) =>{
     if(!isNaN(id)){
         const { goles_local, goles_visita, informe} = req.body;
         const response = await db.query('UPDATE partidos SET goles_local = $1, goles_visita = $2, informe_partido = $3 WHERE id_partido = $4', [goles_local, goles_visita, informe, id]);
-        res.json({
-            message: 'Partido Actualizado Correctamente',
-        })
+        if(response.rowCount > 0){
+            res.json({
+                message: 'Resultado Cargado Correctamente',
+            })
+        }
+        else{
+            res.status(404).json({error: 'not found'});
+        }
     }
     else{
         res.status(400).json({error: 'invalid parameter'});

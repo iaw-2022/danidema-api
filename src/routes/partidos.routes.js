@@ -87,9 +87,9 @@ router.get('/equipo/:id', getPartidosByTeam);
  *              - id_arbitro: true
  *          properties:
  *              hora:
- *                  type: time
+ *                  type: string
  *              fecha:
- *                  type: date
+ *                  type: string
  *              cancha:
  *                  type: string
  *              instancia:
