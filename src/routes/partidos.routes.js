@@ -12,10 +12,52 @@ const { getPartidos, getPartidosById,getPartidosByTeam, updateResultPartidos,cre
  *     responses:
  *       '200':
  *         description: Respuesta correcta.
- *       '400':
- *         description: Parametro invalido.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               id_partido:
+ *                 type: integer
+ *                 example: 1
+ *               hora:
+ *                 type: string
+ *                 example: 16:00:00
+ *               fecha:
+ *                 type: string
+ *                 example: 2022-05-18T03:00:00.000Z
+ *               cancha:
+ *                 type: string
+ *                 example: Sintetico 2
+ *               goles_local:
+ *                 type: integer
+ *                 example: 0
+ *               goles_visita:
+ *                 type: string
+ *                 example: 0
+ *               instancia: 
+ *                 type: string
+ *                 example: Octavos de final
+ *               id_equipo_local:
+ *                 type: integer
+ *                 example: 1
+ *               id_equipo_visitante: 
+ *                 type: integer
+ *                 example: 4
+ *               id_arbitro_designado:
+ *                 type: integer
+ *                 example: 1
+ *               informe_partido:
+ *                 type: string
+ *                 example: partido1.pdf
  *       '404':
  *         description: No se encuentra.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: not found
 */
 router.get('/', getPartidos);
 /**
@@ -35,10 +77,60 @@ router.get('/', getPartidos);
  *     responses:
  *       '200':
  *         description: Respuesta correcta.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               id_partido:
+ *                 type: integer
+ *                 example: 1
+ *               hora:
+ *                 type: string
+ *                 example: 16:00:00
+ *               fecha:
+ *                 type: string
+ *                 example: 2022-05-18T03:00:00.000Z
+ *               cancha:
+ *                 type: string
+ *                 example: Sintetico 2
+ *               goles_local:
+ *                 type: integer
+ *                 example: 0
+ *               goles_visita:
+ *                 type: string
+ *                 example: 0
+ *               instancia: 
+ *                 type: string
+ *                 example: Octavos de final
+ *               id_equipo_local:
+ *                 type: integer
+ *                 example: 1
+ *               id_equipo_visitante: 
+ *                 type: integer
+ *                 example: 4
+ *               id_arbitro_designado:
+ *                 type: integer
+ *                 example: 1
+ *               informe_partido:
+ *                 type: string
+ *                 example: partido1.pdf
  *       '400':
  *         description: Parametro invalido.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: invalid parameter
  *       '404':
  *         description: No se encuentra.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: not found
 */
 router.get('/:id', getPartidosById);
 /**
@@ -58,10 +150,60 @@ router.get('/:id', getPartidosById);
  *     responses:
  *       '200':
  *         description: Respuesta correcta.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               id_partido:
+ *                 type: integer
+ *                 example: 1
+ *               hora:
+ *                 type: string
+ *                 example: 16:00:00
+ *               fecha:
+ *                 type: string
+ *                 example: 2022-05-18T03:00:00.000Z
+ *               cancha:
+ *                 type: string
+ *                 example: Sintetico 2
+ *               goles_local:
+ *                 type: integer
+ *                 example: 0
+ *               goles_visita:
+ *                 type: string
+ *                 example: 0
+ *               instancia: 
+ *                 type: string
+ *                 example: Octavos de final
+ *               id_equipo_local:
+ *                 type: integer
+ *                 example: 1
+ *               id_equipo_visitante: 
+ *                 type: integer
+ *                 example: 4
+ *               id_arbitro_designado:
+ *                 type: integer
+ *                 example: 1
+ *               informe_partido:
+ *                 type: string
+ *                 example: partido1.pdf
  *       '400':
  *         description: Parametro invalido.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: invalid parameter
  *       '404':
- *         description: No se encuentra. 
+ *         description: No se encuentra.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: not found
 */
 router.get('/equipo/:id', getPartidosByTeam);
 /**
@@ -102,7 +244,13 @@ router.get('/equipo/:id', getPartidosByTeam);
  *                  type: integer
  *     responses:
  *       '200':
- *         description: Respuesta correcta. 
+ *         description: Respuesta correcta.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            message:
+ *              type: string
+ *              example: Partido Agregado Correctamente 
 */
 router.post('/', createPartido);
 /**
@@ -122,10 +270,28 @@ router.post('/', createPartido);
  *     responses:
  *       '200':
  *         description: Respuesta correcta.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            message:
+ *              type: string
+ *              example: Partido Eliminado Correctamente
  *       '400':
  *         description: Parametro invalido.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: invalid parameter
  *       '404':
  *         description: No se encuentra.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: not found
 */
 router.delete('/:id', deletePartido);
 /**
@@ -161,10 +327,28 @@ router.delete('/:id', deletePartido);
  *     responses:
  *       '200':
  *         description: Respuesta correcta.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            message:
+ *              type: string
+ *              example: Resultado Cargado Correctamente
  *       '400':
  *         description: Parametro invalido.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: invalid parameter
  *       '404':
  *         description: No se encuentra.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: not found
 */
 router.put('/:id', updateResultPartidos);
 

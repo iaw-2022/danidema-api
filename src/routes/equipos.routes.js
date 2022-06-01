@@ -12,10 +12,34 @@ const { getEquipos, getEquiposById} = require('../controllers/equipos.controller
  *     responses:
  *       '200':
  *         description: Respuesta correcta.
- *       '400':
- *         description: Parametro invalido.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               codigo_equipo:
+ *                 type: integer
+ *                 example: 1
+ *               nombre:
+ *                 type: string
+ *                 example: Sin Contrato FC
+ *               categoria:
+ *                 type: string
+ *                 example: A
+ *               genero:
+ *                 type: string
+ *                 example: M
+ *               escudo:
+ *                 type: string
+ *                 example: sin-contrato.jpg
  *       '404':
  *         description: No se encuentra.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: not found
 */
 router.get('/', getEquipos);
 /**
@@ -35,10 +59,42 @@ router.get('/', getEquipos);
  *     responses:
  *       '200':
  *         description: Respuesta correcta.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               codigo_equipo:
+ *                 type: integer
+ *                 example: 1
+ *               nombre:
+ *                 type: string
+ *                 example: Sin Contrato FC
+ *               categoria:
+ *                 type: string
+ *                 example: A
+ *               genero:
+ *                 type: string
+ *                 example: M
+ *               escudo:
+ *                 type: string
+ *                 example: sin-contrato.jpg
  *       '400':
  *         description: Parametro invalido.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: invalid parameter
  *       '404':
  *         description: No se encuentra.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: not found
 */
 router.get('/:id', getEquiposById);
 

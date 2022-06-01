@@ -12,10 +12,31 @@ const { getUsers, getUsersById} = require('../controllers/users.controller.js');
  *     responses:
  *       '200':
  *         description: Respuesta correcta.
- *       '400':
- *         description: Parametro invalido.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *                 example: 1
+ *               name:
+ *                 type: string
+ *                 example: Gabriel
+ *               email:
+ *                 type: string
+ *                 example: gabriel@example1.com
+ *               password:
+ *                 type: string
+ *                 example: contraseñaexample1
  *       '404':
  *         description: No se encuentra.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: not found
 */
 router.get('/', getUsers);
 /**
@@ -35,10 +56,39 @@ router.get('/', getUsers);
  *     responses:
  *       '200':
  *         description: Respuesta correcta.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *                 example: 1
+ *               name:
+ *                 type: string
+ *                 example: Gabriel
+ *               email:
+ *                 type: string
+ *                 example: gabriel@example1.com
+ *               password:
+ *                 type: string
+ *                 example: contraseñaexample1
  *       '400':
  *         description: Parametro invalido.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: invalid parameter
  *       '404':
  *         description: No se encuentra.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: not found
 */
 router.get('/:id', getUsersById);
 //router.post('/users', createUsers);

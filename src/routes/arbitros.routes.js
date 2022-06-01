@@ -12,10 +12,28 @@ const { getArbitros, getArbitrosById} = require('../controllers/arbitros.control
  *     responses:
  *       '200':
  *         description: Respuesta correcta.
- *       '400':
- *         description: Parametro invalido.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               id_arbitro:
+ *                 type: integer
+ *                 example: 1
+ *               nombre:
+ *                 type: string
+ *                 example: Juan Maglio
+ *               contacto:
+ *                 type: string
+ *                 example: 2915656532
  *       '404':
  *         description: No se encuentra.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: not found
  */
 router.get('/', getArbitros);
 /**
@@ -35,10 +53,36 @@ router.get('/', getArbitros);
  *     responses:
  *       '200':
  *         description: Respuesta correcta.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               id_arbitro:
+ *                 type: integer
+ *                 example: 1
+ *               nombre:
+ *                 type: string
+ *                 example: Juan Maglio
+ *               contacto:
+ *                 type: string
+ *                 example: 2915656532
  *       '400':
  *         description: Parametro invalido.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: invalid parameter
  *       '404':
  *         description: No se encuentra.
+ *         schema:
+ *          type: object
+ *          properties:
+ *            error:
+ *              type: string
+ *              example: not found
  */
 router.get('/:id', getArbitrosById);
 
