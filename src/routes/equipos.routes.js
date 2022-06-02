@@ -18,7 +18,7 @@ const { getEquipos, getEquiposById} = require('../controllers/equipos.controller
  *             type: object
  *             properties:
  *               codigo_equipo:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               nombre:
  *                 type: string
@@ -65,7 +65,7 @@ router.get('/', getEquipos);
  *             type: object
  *             properties:
  *               codigo_equipo:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               nombre:
  *                 type: string

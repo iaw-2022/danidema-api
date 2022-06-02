@@ -18,7 +18,7 @@ const { getArbitros, getArbitrosById} = require('../controllers/arbitros.control
  *             type: object
  *             properties:
  *               id_arbitro:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               nombre:
  *                 type: string
@@ -59,7 +59,7 @@ router.get('/', getArbitros);
  *             type: object
  *             properties:
  *               id_arbitro:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               nombre:
  *                 type: string

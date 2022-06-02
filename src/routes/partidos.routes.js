@@ -18,7 +18,7 @@ const { getPartidos, getPartidosById,getPartidosByTeam, updateResultPartidos,cre
  *             type: object
  *             properties:
  *               id_partido:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               hora:
  *                 type: string
@@ -30,7 +30,7 @@ const { getPartidos, getPartidosById,getPartidosByTeam, updateResultPartidos,cre
  *                 type: string
  *                 example: Sintetico 2
  *               goles_local:
- *                 type: integer
+ *                 type: string
  *                 example: 0
  *               goles_visita:
  *                 type: string
@@ -39,13 +39,13 @@ const { getPartidos, getPartidosById,getPartidosByTeam, updateResultPartidos,cre
  *                 type: string
  *                 example: Octavos de final
  *               id_equipo_local:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               id_equipo_visitante: 
- *                 type: integer
+ *                 type: string
  *                 example: 4
  *               id_arbitro_designado:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               informe_partido:
  *                 type: string
@@ -83,7 +83,7 @@ router.get('/', getPartidos);
  *             type: object
  *             properties:
  *               id_partido:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               hora:
  *                 type: string
@@ -95,7 +95,7 @@ router.get('/', getPartidos);
  *                 type: string
  *                 example: Sintetico 2
  *               goles_local:
- *                 type: integer
+ *                 type: string
  *                 example: 0
  *               goles_visita:
  *                 type: string
@@ -104,13 +104,13 @@ router.get('/', getPartidos);
  *                 type: string
  *                 example: Octavos de final
  *               id_equipo_local:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               id_equipo_visitante: 
- *                 type: integer
+ *                 type: string
  *                 example: 4
  *               id_arbitro_designado:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               informe_partido:
  *                 type: string
@@ -156,7 +156,7 @@ router.get('/:id', getPartidosById);
  *             type: object
  *             properties:
  *               id_partido:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               hora:
  *                 type: string
@@ -168,7 +168,7 @@ router.get('/:id', getPartidosById);
  *                 type: string
  *                 example: Sintetico 2
  *               goles_local:
- *                 type: integer
+ *                 type: string
  *                 example: 0
  *               goles_visita:
  *                 type: string
@@ -177,13 +177,13 @@ router.get('/:id', getPartidosById);
  *                 type: string
  *                 example: Octavos de final
  *               id_equipo_local:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               id_equipo_visitante: 
- *                 type: integer
+ *                 type: string
  *                 example: 4
  *               id_arbitro_designado:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               informe_partido:
  *                 type: string

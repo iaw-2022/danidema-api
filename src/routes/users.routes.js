@@ -18,7 +18,7 @@ const { getUsers, getUsersById} = require('../controllers/users.controller.js');
  *             type: object
  *             properties:
  *               id:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               name:
  *                 type: string
@@ -62,7 +62,7 @@ router.get('/', getUsers);
  *             type: object
  *             properties:
  *               id:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               name:
  *                 type: string
