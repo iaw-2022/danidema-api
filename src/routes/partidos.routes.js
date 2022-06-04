@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const router = Router();
+const checkJwt = require('../auth');
 
 const { getPartidos, getPartidosById,getPartidosByTeam, updateResultPartidos,createPartido,deletePartido} = require('../controllers/partidos.controller.js');
 /**
@@ -248,6 +249,8 @@ router.get('/equipo/:id', getPartidosByTeam);
  * /partidos:
  *   post:
  *     summary: "Agregar partido."
+ *     security:
+ *       - BearerAuth: []
  *     tags: [Partidos]
  *     requestBody:
  *       required: true
@@ -298,12 +301,14 @@ router.get('/equipo/:id', getPartidosByTeam);
  *                   type: string
  *                   example: "Partido Agregado Correctamente" 
 */
-router.post('/', createPartido);
+router.post('/',checkJwt, createPartido);
 /**
  * @swagger
  * /partidos/{id}:
  *   delete:
  *     summary: "Borrar partido por id."
+ *     security:
+ *       - BearerAuth: []
  *     tags: [Partidos]
  *     parameters:
  *       - name: id
@@ -344,12 +349,14 @@ router.post('/', createPartido);
  *                   type: string
  *                   example: "not found"
  */
-router.delete('/:id', deletePartido);
+router.delete('/:id',checkJwt, deletePartido);
 /**
  * @swagger
  * /partidos/{id}:
  *   put:
  *     summary: "Agregar resultado a un partido y el informe correspondiente."
+ *     security:
+ *       - BearerAuth: []
  *     tags: [Partidos]
  *     parameters:
  *       - in: path
@@ -407,6 +414,6 @@ router.delete('/:id', deletePartido);
  *                   type: string
  *                   example: "not found"
  */
-router.put('/:id', updateResultPartidos);
+router.put('/:id',checkJwt, updateResultPartidos);
 
 module.exports = router;

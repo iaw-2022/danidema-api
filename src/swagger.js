@@ -11,7 +11,7 @@ const swaggerOptions = {
             version: '1.0.0'
         }
     },
-    apis: [`${path.join(__dirname, "./routes/*.routes.js")}`],
+    apis: [`${path.join(__dirname, "./routes/*.routes.js")}`,'./src/index.js'],
 }
 
 module.exports = swaggerOptions
