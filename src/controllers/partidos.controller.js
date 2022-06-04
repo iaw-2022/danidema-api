@@ -43,10 +43,7 @@ const createPartido = async(req, res) =>{
     const { hora, fecha, cancha, instancia, id_local, id_visita,id_arbitro} = req.body;
     const response = await db.query('INSERT INTO partidos (hora, fecha, cancha, instancia, id_equipo_local, id_equipo_visitante,id_arbitro_designado) VALUES ($1, $2, $3, $4, $5, $6, $7)', [hora, fecha, cancha, instancia, id_local, id_visita,id_arbitro]);
     res.json({
-        message: 'Partido Agregado Correctamente',
-        body: {
-            partido: {hora, fecha, cancha, instancia, id_local, id_visita,id_arbitro}
-        }
+        message: 'Partido Agregado Correctamente'
     })
 };
 

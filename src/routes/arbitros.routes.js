@@ -4,85 +4,126 @@ const router = Router();
 const { getArbitros, getArbitrosById} = require('../controllers/arbitros.controller.js');
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Arbitro:
+ *       type: object
+ *       required:
+ *         - id_arbitro
+ *         - nombre
+ *         - contacto
+ *       properties:
+ *         id_arbitro:
+ *           type: string
+ *           description: "id del arbitro"
+ *         nombre:
+ *           type: string
+ *           description: "nombre del arbitro"
+ *         contacto:
+ *           type: string
+ *           description: "contacto del arbitro"
+ *         created_at:
+ *           type: string
+ *           description: "data de creacion del arbitro"
+ *         updated_at:
+ *           type: string
+ *           description: "data de actualizacion del arbitro"
+ *       example:
+ *         id_arbitro: "1"
+ *         nombre: "Rodrigo Gomez"
+ *         contacto: "2915456879"
+ *         created_at: "2022-06-12 03:50:40"
+ *         updated_at: "2022-08-12 03:50:40"
+ */
+
+
+
+/**
+ * @swagger
  * /arbitros:
  *   get:
- *     description: Obtener todos los arbitros.
- *     tags: 
- *       - Arbitros
+ *     summary: "Obtener todos los arbitros."
+ *     tags: [Arbitros]
  *     responses:
- *       '200':
- *         description: Respuesta correcta.
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               id_arbitro:
- *                 type: string
- *                 example: 1
- *               nombre:
- *                 type: string
- *                 example: Juan Maglio
- *               contacto:
- *                 type: string
- *                 example: 2915656532
- *       '404':
+ *       200:
+ *         description: "Respuesta correcta."
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/Arbitro'
+ *               example:
+ *                 - id_arbitro: "1"
+ *                   nombre: "Rodrigo Gomez"
+ *                   contacto: "2914555687"
+ *                   created_at: "2022-06-12 03:50:40"
+ *                   updated_at: "2022-08-12 03:50:40"
+ *                 - id_arbitro: "2"
+ *                   nombre: "Juan Maglio"
+ *                   contacto: "2914568789"
+ *                   created_at: "2022-06-12 03:50:40"
+ *                   updated_at: "2022-08-12 03:50:40"
+ *       404:
  *         description: No se encuentra.
- *         schema:
- *          type: object
- *          properties:
- *            error:
- *              type: string
- *              example: not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "not found"
  */
 router.get('/', getArbitros);
 /**
  * @swagger
  * /arbitros/{id}:
  *   get:
- *     description: Obtener arbitro por id.
- *     tags: 
- *       - Arbitros
+ *     summary: "Obtener arbitro por id."
+ *     tags: [Arbitros]
  *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
+ *       - name: id
+ *         in: path
  *         required: true
- *         description: ID del arbitro.
+ *         description: id del arbitro.
+ *         schema:
+ *           type : integer
  *     responses:
- *       '200':
- *         description: Respuesta correcta.
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               id_arbitro:
- *                 type: string
- *                 example: 1
- *               nombre:
- *                 type: string
- *                 example: Juan Maglio
- *               contacto:
- *                 type: string
- *                 example: 2915656532
- *       '400':
+ *       200:
+ *         description: "Respuesta correcta."
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/User'
+ *               example:
+ *                 - id_arbitro: "1"
+ *                   nombre: "Rodrigo Gomez"
+ *                   contacto: "2914555687"
+ *                   created_at: "2022-06-12 03:50:40"
+ *                   updated_at: "2022-08-12 03:50:40"
+ *       400:
  *         description: Parametro invalido.
- *         schema:
- *          type: object
- *          properties:
- *            error:
- *              type: string
- *              example: invalid parameter
- *       '404':
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "invalid parameter"
+ *       404:
  *         description: No se encuentra.
- *         schema:
- *          type: object
- *          properties:
- *            error:
- *              type: string
- *              example: not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "not found"
  */
 router.get('/:id', getArbitrosById);
 
