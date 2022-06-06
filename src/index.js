@@ -8,9 +8,11 @@ const routesUsers = require('./routes/users.routes');
 const routesArbitros = require('./routes/arbitros.routes');
 const routesEquipos = require('./routes/equipos.routes');
 const config = require('./config.js')
+const cors = require('cors');
 const app = express();
 
 //middlewares
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 //routes
