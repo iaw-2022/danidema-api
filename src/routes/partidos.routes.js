@@ -2,7 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const checkJwt = require('../auth');
 
-const { getPartidos, getPartidosById, getPartidosByTeam, updateResultPartidos,createPartido,deletePartido} = require('../controllers/partidos.controller.js');
+const { getPartidos, getPartidosById, getPartidosByTeam, getPartidosByDate, updateResultPartidos,createPartido,deletePartido} = require('../controllers/partidos.controller.js');
 /**
  * @swagger
  * components:
@@ -67,7 +67,7 @@ const { getPartidos, getPartidosById, getPartidosByTeam, updateResultPartidos,cr
  *         nombre_visitante:
  *           type: string
  *           description: "nombre del equipo que juega el partido de visitante"
- *         escudo visitante:
+ *         escudo_visitante:
  *           type: string
  *           description: "nombre del archivo que contiene el escudo del equipo visitante"
  *         nombre_arbitro:
@@ -285,6 +285,70 @@ router.get('/:id', getPartidosById);
  */
 router.get('/equipo/:id', getPartidosByTeam);
 
+/**
+ * @swagger
+ * /partidos/fecha/{fecha}:
+ *   get:
+ *     summary: "Obtener todos los partidos mayor a la fecha actual."
+ *     tags: [Partidos]
+ *     responses:
+ *       200:
+ *         description: "Respuesta correcta."
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/Partido'
+ *               example:
+ *                 - id_partido: "1"
+ *                   hora: "16:00:00"
+ *                   fecha: "2022-05-18T03:00:00.000Z"
+ *                   cancha: "Sintetico 1"
+ *                   goles_local: "0"
+ *                   goles_visita: "1"
+ *                   instancia: "Final"
+ *                   id_equipo_local: "1"
+ *                   id_equipo_visitante: "4"
+ *                   id_arbitro_designado: "1"
+ *                   informe_partido: "informepartido1.pdf"
+ *                   created_at: "2022-06-12 03:50:40"
+ *                   updated_at: "2022-08-12 03:50:40"
+ *                   nombre_local: "Sin Contrato FC"
+ *                   escudo_local: "sin-contrato.jpg"
+ *                   nombre_visitante: "Mandiyu"
+ *                   escudo_visitante: "mandiyu-revenge.jpg"
+ *                   nombre_arbitro: "Juan Maglio"
+ *                 - id_partido: "2"
+ *                   hora: "12:00:00"
+ *                   fecha: "2022-06-18T03:00:00.000Z"
+ *                   cancha: "Sintetico 2"
+ *                   goles_local: "0"
+ *                   goles_visita: "0"
+ *                   instancia: "Octavos de final"
+ *                   id_equipo_local: "2"
+ *                   id_equipo_visitante: "3"
+ *                   id_arbitro_designado: "2"
+ *                   informe_partido: "informepartido3.pdf"
+ *                   created_at: "2022-06-12 03:50:40"
+ *                   updated_at: "2022-08-12 03:50:40"
+ *                   nombre_local: "Fondo Blanco Fem"
+ *                   escudo_local: "fondo-blanco-fem.jpg"
+ *                   nombre_visitante: "Setenta Treinta Fem"
+ *                   escudo_visitante: "setenta-treinta-fem.jpg"
+ *                   nombre_arbitro: "Rodrigo Gomez"
+ *       404:
+ *         description: No se encuentra.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "not found"
+ */
+router.get('/fecha/:fecha', getPartidosByDate);
 /**
  * @swagger
  * /partidos:

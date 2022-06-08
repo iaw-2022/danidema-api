@@ -39,6 +39,15 @@ const getPartidosByTeam = async(req, res) =>{
     }
 };
 
+const getPartidosByDate = async(req, res) =>{
+    const response = await db.query('SELECT partidos.*, local.nombre as nombre_local,local.escudo as escudo_local,visitante.nombre as nombre_visitante,visitante.escudo as escudo_visitante, arbitros.nombre as nombre_arbitro FROM "partidos" JOIN equipos as local ON partidos.id_equipo_local = local.codigo_equipo JOIN arbitros ON partidos.id_arbitro_designado = arbitros.id_arbitro join equipos as visitante on visitante.codigo_equipo = partidos.id_equipo_visitante WHERE fecha > now()');
+    if(response.rows.length > 0){
+        res.status(200).json(response.rows);
+    }else{
+        res.status(404).json({error: 'not found'});
+    }
+};
+
 const createPartido = async(req, res) =>{
     const { hora, fecha, cancha, instancia, id_local, id_visita,id_arbitro} = req.body;
     const response = await db.query('INSERT INTO partidos (hora, fecha, cancha, instancia, id_equipo_local, id_equipo_visitante,id_arbitro_designado) VALUES ($1, $2, $3, $4, $5, $6, $7)', [hora, fecha, cancha, instancia, id_local, id_visita,id_arbitro]);
@@ -89,6 +98,7 @@ module.exports = {
     getPartidos,
     getPartidosById,
     getPartidosByTeam,
+    getPartidosByDate,
     updateResultPartidos,
     createPartido,
     deletePartido
