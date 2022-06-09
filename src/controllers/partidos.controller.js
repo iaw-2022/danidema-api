@@ -41,7 +41,8 @@ const getPartidosByTeam = async(req, res) =>{
 };
 
 const getPartidosByDate = async(req, res) =>{
-    const response = await db.query('SELECT partidos.*, local.nombre as nombre_local,local.escudo as escudo_local,visitante.nombre as nombre_visitante,visitante.escudo as escudo_visitante, arbitros.nombre as nombre_arbitro FROM "partidos" JOIN equipos as local ON partidos.id_equipo_local = local.codigo_equipo JOIN arbitros ON partidos.id_arbitro_designado = arbitros.id_arbitro join equipos as visitante on visitante.codigo_equipo = partidos.id_equipo_visitante WHERE fecha > now()');
+    const condicion = "fecha > cast(now() as date)-1" 
+    const response = await db.query('SELECT partidos.*, local.nombre as nombre_local,local.escudo as escudo_local,visitante.nombre as nombre_visitante,visitante.escudo as escudo_visitante, arbitros.nombre as nombre_arbitro FROM "partidos" JOIN equipos as local ON partidos.id_equipo_local = local.codigo_equipo JOIN arbitros ON partidos.id_arbitro_designado = arbitros.id_arbitro join equipos as visitante on visitante.codigo_equipo = partidos.id_equipo_visitante WHERE partidos.fecha > (cast(now() as date)-1)');
     if(response.rows.length > 0){
         res.status(200).json(response.rows);
     }else{
