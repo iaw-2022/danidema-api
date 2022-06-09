@@ -1,4 +1,5 @@
 const db = require('../database');
+const moment = require('moment'); 
 
 const getPartidos = async(req, res) =>{
     const response = await db.query('SELECT partidos.*, local.nombre as nombre_local,local.escudo as escudo_local,visitante.nombre as nombre_visitante,visitante.escudo as escudo_visitante, arbitros.nombre as nombre_arbitro FROM "partidos" JOIN equipos as local ON partidos.id_equipo_local = local.codigo_equipo JOIN arbitros ON partidos.id_arbitro_designado = arbitros.id_arbitro join equipos as visitante on visitante.codigo_equipo = partidos.id_equipo_visitante');
@@ -50,7 +51,7 @@ const getPartidosByDate = async(req, res) =>{
 
 const createPartido = async(req, res) =>{
     const { hora, fecha, cancha, instancia, id_local, id_visita,id_arbitro} = req.body;
-    const response = await db.query('INSERT INTO partidos (hora, fecha, cancha, instancia, id_equipo_local, id_equipo_visitante,id_arbitro_designado) VALUES ($1, $2, $3, $4, $5, $6, $7)', [hora, fecha, cancha, instancia, id_local, id_visita,id_arbitro]);
+    const response = await db.query('INSERT INTO partidos (hora, fecha, cancha, instancia, id_equipo_local, id_equipo_visitante,id_arbitro_designado) VALUES ($1, $2, $3, $4, $5, $6, $7)', [hora,moment(fecha).format("DD/MM/YYYY"), cancha, instancia, id_local, id_visita,id_arbitro]);
     res.json({
         message: 'Partido Agregado Correctamente'
     })
