@@ -26,18 +26,15 @@ const getPartidosById = async(req, res) =>{
 };
 
 const getPartidosByTeam = async(req, res) =>{
-    const id = req.params.id;
-    if(!isNaN(id)){
-        const response = await db.query('SELECT partidos.*, local.nombre as nombre_local,local.escudo as escudo_local,visitante.nombre as nombre_visitante,visitante.escudo as escudo_visitante, arbitros.nombre as nombre_arbitro FROM "partidos" JOIN equipos as local ON partidos.id_equipo_local = local.codigo_equipo JOIN arbitros ON partidos.id_arbitro_designado = arbitros.id_arbitro join equipos as visitante on visitante.codigo_equipo = partidos.id_equipo_visitante WHERE (id_equipo_local = $1) or (id_equipo_visitante = $1)', [id]);
-        if(response.rows.length > 0){
-            res.status(200).json(response.rows);
-        }else{
-            res.status(404).json({error: 'not found'});
-        }
+    const name = req.params.name;
+    const condicion = `nombre_local like '%${name}' or nombre_visitante like '%${name}'`
+    const response = await db.query('SELECT partidos.*, local.nombre as nombre_local,local.escudo as escudo_local,visitante.nombre as nombre_visitante,visitante.escudo as escudo_visitante, arbitros.nombre as nombre_arbitro FROM "partidos" JOIN equipos as local ON partidos.id_equipo_local = local.codigo_equipo JOIN arbitros ON partidos.id_arbitro_designado = arbitros.id_arbitro join equipos as visitante on visitante.codigo_equipo = partidos.id_equipo_visitante WHERE $1', [condicion]);
+    if(response.rows.length > 0){
+        res.status(200).json(response.rows);
+    }else{
+        res.status(404).json({error: 'not found'});
     }
-    else{
-        res.status(400).json({error: 'invalid parameter'});
-    }
+   
 };
 
 const getPartidosByDate = async(req, res) =>{

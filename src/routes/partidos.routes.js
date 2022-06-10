@@ -223,17 +223,17 @@ router.get('/', getPartidos);
 router.get('/:id', getPartidosById);
 /**
  * @swagger
- * /partidos/equipo/{id-equipo}:
+ * /partidos/equipo/{name-equipo}:
  *   get:
  *     summary: "Obtener partidos por equipo"
  *     tags: [Partidos]
  *     parameters:
- *       - name: id-equipo
+ *       - name: name-equipo
  *         in: path
  *         required: true
- *         description: id del equipo.
+ *         description: nombre del equipo.
  *         schema:
- *           type : integer
+ *           type : string
  *     responses:
  *       200:
  *         description: "Respuesta correcta."
@@ -262,16 +262,6 @@ router.get('/:id', getPartidosById);
  *                   nombre_visitante: "Mandiyu"
  *                   escudo_visitante: "mandiyu-revenge.jpg"
  *                   nombre_arbitro: "Juan Maglio"
- *       400:
- *         description: Parametro invalido.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: string
- *                   example: "invalid parameter"
  *       404:
  *         description: No se encuentra.
  *         content:
@@ -283,7 +273,7 @@ router.get('/:id', getPartidosById);
  *                   type: string
  *                   example: "not found"
  */
-router.get('/equipo/:id', getPartidosByTeam);
+router.get('/equipo/:name', getPartidosByTeam);
 
 /**
  * @swagger
