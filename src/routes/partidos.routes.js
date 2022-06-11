@@ -49,9 +49,6 @@ const { getPartidos, getPartidosById, getPartidosByTeam, getPartidosByDate, upda
  *         id_arbitro_designado:
  *           type: string
  *           description: "id del arbitro designado al partido"
- *         informe_partido:
- *           type: string
- *           description: "informe brindado por el arbitro del partido"
  *         created_at:
  *           type: string
  *           description: "data de creacion del partido"
@@ -84,7 +81,6 @@ const { getPartidos, getPartidosById, getPartidosByTeam, getPartidosByDate, upda
  *         id_equipo_local: "1"
  *         id_equipo_visitante: "4"
  *         id_arbitro_designado: "1"
- *         informe_partido: "informepartido1.pdf"
  *         created_at: "2022-06-12 03:50:40"
  *         updated_at: "2022-08-12 03:50:40"
  *         nombre_local: "Sin Contrato FC"
@@ -120,7 +116,6 @@ const { getPartidos, getPartidosById, getPartidosByTeam, getPartidosByDate, upda
  *                   id_equipo_local: "1"
  *                   id_equipo_visitante: "4"
  *                   id_arbitro_designado: "1"
- *                   informe_partido: "informepartido1.pdf"
  *                   created_at: "2022-06-12 03:50:40"
  *                   updated_at: "2022-08-12 03:50:40"
  *                   nombre_local: "Sin Contrato FC"
@@ -138,7 +133,6 @@ const { getPartidos, getPartidosById, getPartidosByTeam, getPartidosByDate, upda
  *                   id_equipo_local: "2"
  *                   id_equipo_visitante: "3"
  *                   id_arbitro_designado: "2"
- *                   informe_partido: "informepartido3.pdf"
  *                   created_at: "2022-06-12 03:50:40"
  *                   updated_at: "2022-08-12 03:50:40"
  *                   nombre_local: "Fondo Blanco Fem"
@@ -191,7 +185,6 @@ router.get('/', getPartidos);
  *                   id_equipo_local: "1"
  *                   id_equipo_visitante: "4"
  *                   id_arbitro_designado: "1"
- *                   informe_partido: "informepartido1.pdf"
  *                   created_at: "2022-06-12 03:50:40"
  *                   updated_at: "2022-08-12 03:50:40"
  *                   nombre_local: "Sin Contrato FC"
@@ -254,7 +247,6 @@ router.get('/:id', getPartidosById);
  *                   id_equipo_local: "1"
  *                   id_equipo_visitante: "4"
  *                   id_arbitro_designado: "1"
- *                   informe_partido: "informepartido1.pdf"
  *                   created_at: "2022-06-12 03:50:40"
  *                   updated_at: "2022-08-12 03:50:40"
  *                   nombre_local: "Sin Contrato FC"
@@ -311,7 +303,6 @@ router.get('/equipo/:id', getPartidosByTeam);
  *                   id_equipo_local: "1"
  *                   id_equipo_visitante: "4"
  *                   id_arbitro_designado: "1"
- *                   informe_partido: "informepartido1.pdf"
  *                   created_at: "2022-06-12 03:50:40"
  *                   updated_at: "2022-08-12 03:50:40"
  *                   nombre_local: "Sin Contrato FC"
@@ -329,7 +320,6 @@ router.get('/equipo/:id', getPartidosByTeam);
  *                   id_equipo_local: "2"
  *                   id_equipo_visitante: "3"
  *                   id_arbitro_designado: "2"
- *                   informe_partido: "informepartido3.pdf"
  *                   created_at: "2022-06-12 03:50:40"
  *                   updated_at: "2022-08-12 03:50:40"
  *                   nombre_local: "Fondo Blanco Fem"
@@ -481,12 +471,9 @@ router.delete('/:id',checkJwt, deletePartido);
  *                 type: integer
  *               goles_visita:
  *                 type: integer
- *               informe:
- *                 type: string
  *             example:
  *               goles_local: "0"
  *               goles_visita: "0"
- *               informe: "informe.pdf"
  *     responses:
  *       200:
  *         description: "Respuesta correcta."

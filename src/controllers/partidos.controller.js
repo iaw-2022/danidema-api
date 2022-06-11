@@ -61,8 +61,8 @@ const createPartido = async(req, res) =>{
 const updateResultPartidos = async(req, res) =>{
     const id = req.params.id
     if(!isNaN(id)){
-        const { goles_local, goles_visita, informe} = req.body;
-        const response = await db.query('UPDATE partidos SET goles_local = $1, goles_visita = $2, informe_partido = $3 WHERE id_partido = $4', [goles_local, goles_visita, informe, id]);
+        const { goles_local, goles_visita} = req.body;
+        const response = await db.query('UPDATE partidos SET goles_local = $1, goles_visita = $2 WHERE id_partido = $3', [goles_local, goles_visita, id]);
         if(response.rowCount > 0){
             res.json({
                 message: 'Resultado Cargado Correctamente',
