@@ -449,7 +449,7 @@ router.delete('/:id',checkJwt, deletePartido);
  * @swagger
  * /partidos/{id}:
  *   put:
- *     summary: "Agregar resultado a un partido y el informe correspondiente."
+ *     summary: "Agregar resultado a un partido."
  *     security:
  *       - BearerAuth: []
  *     tags: [Partidos]
