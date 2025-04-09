@@ -7,7 +7,7 @@ const db_config = {
     password: config.DB_PASSWORD,
     database: config.DATABASE,
     port: config.DB_PORT,
-    ssl: { rejectUnauthorized: false }
+    //ssl: { rejectUnauthorized: false }
 };
 
 const db = new Pool(db_config);
