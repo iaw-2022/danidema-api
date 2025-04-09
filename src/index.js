@@ -37,5 +37,6 @@ app.use('/partidos', routesPartidos);
 app.use('/arbitros', routesArbitros);
 app.use('/equipos', routesEquipos);
 
-app.listen(config.PORT);
-console.log(`Server on port ${config.PORT}` );
+//app.listen(config.PORT);
+//console.log(`Server on port ${config.PORT}` );
+module.exports = app;
