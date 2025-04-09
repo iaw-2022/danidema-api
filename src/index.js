@@ -37,7 +37,5 @@ app.use('/partidos', routesPartidos);
 app.use('/arbitros', routesArbitros);
 app.use('/equipos', routesEquipos);
 
-// 👇 Exportar la app para que Vercel la pueda usar
-module.exports = app;
-//app.listen(config.PORT);
-//console.log(`Server on port ${config.PORT}` );
+app.listen(config.PORT);
+console.log(`Server on port ${config.PORT}` );
